@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fooddelivery">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FoodDelivery">
+        <activity android:name=".Activity.LoginScreen"></activity>
+        <activity
+            android:name=".Activity.UserCartActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.ProfileActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.CategoryProduct"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.ProductDetailsActivity"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.Introscreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.MainActivity" />
+    </application>
+
+</manifest>
