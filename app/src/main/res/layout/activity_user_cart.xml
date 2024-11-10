@@ -31,16 +31,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/proceedBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/buy_boarder_shape"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:text="Proceed to Buy"
+        android:text="Continue Shopping"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:background="@color/lightgreen"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

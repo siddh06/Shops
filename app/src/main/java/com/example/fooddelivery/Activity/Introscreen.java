@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fooddelivery.R;
+import com.example.fooddelivery.Util.AppPreference;
 
 public class Introscreen extends AppCompatActivity {
 
@@ -23,9 +24,15 @@ public class Introscreen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 finally {
-                    Intent intent=new Intent(Introscreen.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if(AppPreference.getInstance(getApplicationContext()).getBoolean("isLogin")){
+                        Intent intent = new Intent(Introscreen.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        Intent intent = new Intent(Introscreen.this, LoginScreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
 

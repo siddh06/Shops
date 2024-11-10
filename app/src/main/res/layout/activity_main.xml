@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Hii Siddhesh"
+                        android:text="Hii Jhon"
                         android:textColor="@color/orange"
                         android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:background="@drawable/search_bar_background"
+                    android:background="@drawable/image_baground"
                     android:hint="@string/search_your_favorite_food"
                     android:textColorHint="@color/gray"
                     android:textColor="@color/black"
@@ -110,13 +110,21 @@
                 android:layout_height="245dp"
                 android:layout_margin="10dp"
                 android:orientation="horizontal"
-                android:background="@drawable/search_bar_background"
+                android:background="@drawable/image_baground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-                <com.smarteist.autoimageslider.SliderView
+                <ImageView
+                    android:id="@+id/imgDiv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/slideimg"
+                    android:scaleType="fitXY"
+                    android:padding="5dp"/>
+
+               <!-- <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -133,7 +141,7 @@
                     app:sliderIndicatorSelectedColor="#5A5A5A"
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="1"
-                    app:sliderStartAutoCycle="true" />
+                    app:sliderStartAutoCycle="true" />-->
 
                 <!--<ImageView
                     android:layout_width="match_parent"

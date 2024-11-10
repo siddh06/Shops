@@ -14,13 +14,12 @@ import com.bumptech.glide.Glide;
 import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.SampleSliderImgBinding;
 import com.example.fooddelivery.modal.SliderImageModel;
-import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderViewHolder>{
+public class SliderAdapter {
     Context context;
     //int[] mydata;
     List<SliderImageModel> sliderImageModels = new ArrayList<>();
@@ -45,7 +44,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderViewHol
         notifyDataSetChanged();
     }*/
 
-    @Override
+   /* @Override
     public SliderViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sample_slider_img, null);
         return new SliderViewHolder(view);
@@ -78,5 +77,5 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderViewHol
             //txtDes = itemView.findViewById(R.id.txtSlideImg);
             this.itemView = itemView;
         }
-    }
+    }*/
 }

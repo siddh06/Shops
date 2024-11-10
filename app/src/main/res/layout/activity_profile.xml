@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80000000"
     tools:context=".Activity.ProfileActivity">
 
     <LinearLayout
@@ -35,7 +36,7 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SIDDHESH KHIRAD"
+                android:text="Jhons Dell"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -45,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
-                android:text="#siddhesh_88"
+                android:text="#Jhon_01"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -57,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/profile_bio_background"
+        android:background="#80000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -77,10 +78,10 @@
                 android:text="Name"/>
 
             <TextView
+                android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtName"
-                android:text="SIDDHESH KHIRAD"
+                android:text="Jhon Dell"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_below="@+id/txtname"/>
@@ -100,10 +101,10 @@
                 android:text="Username"/>
 
             <TextView
+                android:id="@+id/txtUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtUserName"
-                android:text="siddhesh_88"
+                android:text="Jhon@01"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_below="@+id/txtusername"/>
@@ -146,10 +147,10 @@
                 android:text="Email"/>
 
             <TextView
+                android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtEmail"
-                android:text="siddhesh@gmail.com"
+                android:text="jhon@gmail.com"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_below="@+id/txtemail"/>
@@ -169,11 +170,12 @@
                 android:text="Password"/>
 
             <TextView
+                android:id="@+id/txtPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtPassword"
-                android:text="siddh0123"
+                android:text="jhon@123"
                 android:textSize="18sp"
+                android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:layout_below="@+id/txtpassword"/>
 

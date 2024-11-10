@@ -23,6 +23,7 @@
             android:layout_height="350dp"
             android:background="@color/white"
             android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_backgroun_img" />
 
         <androidx.core.widget.NestedScrollView
@@ -195,7 +196,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearTwo"
-                    android:layout_margin="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/textview_cornor_round"
                     android:orientation="vertical">
 
@@ -211,8 +215,8 @@
                         android:id="@+id/txtProductDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
                         android:layout_marginBottom="47dp"
+                        android:padding="5dp"
                         android:text="utton placket-button plackettn work and fun.utton placket-button plackettn work and fun.utton placket-button plackettn work and fun."
                         android:textColor="@color/black" />
 
@@ -224,29 +228,37 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnBuy"
-        android:layout_width="130dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buy Now"
-        android:layout_margin="10dp"
-        android:background="@drawable/buy_boarder_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddCart"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddCart"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:text="Add To Cart"
-        android:background="@drawable/buy_boarder_shape"
-        android:padding="5dp"
-        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnBuy" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/buy_boarder_shape"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:text="Buy Now"/>
+
+        <Button
+            android:id="@+id/btnAddCart"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/buy_boarder_shape"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:text="Add To Cart" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

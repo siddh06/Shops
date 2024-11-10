@@ -47,11 +47,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.binding.categoryProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Product click", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, CategoryProduct.class);
-                intent.putExtra("categoryName", category.getName());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                if(category.getName().equalsIgnoreCase("Grosarry") || category.getName().equalsIgnoreCase("iPhone") || category.getName().equalsIgnoreCase("kids Clothing")){
+                    Toast.makeText(context, "No Data Available", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(context, CategoryProduct.class);
+                    intent.putExtra("categoryName", category.getName());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
             }
         });
 

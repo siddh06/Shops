@@ -1,5 +1,6 @@
 package com.example.fooddelivery.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -35,42 +36,48 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ImageView imgProductImage;
     TextView txtProductTitle, txtProductPrice, txtProductDesc;
     Button btnAddCart;
-    HashSet<Integer> myCartData;
+    HashSet<Integer> myCartData = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        imgProductImage = findViewById(R.id.imgSingleProduct);
-        txtProductTitle = findViewById(R.id.txtProductTitle);
-        txtProductPrice = findViewById(R.id.txtProductPrice);
-        txtProductDesc = findViewById(R.id.txtProductDesc);
-        btnAddCart = findViewById(R.id.btnAddCart);
+        try {
+            imgProductImage = findViewById(R.id.imgSingleProduct);
+            txtProductTitle = findViewById(R.id.txtProductTitle);
+            txtProductPrice = findViewById(R.id.txtProductPrice);
+            txtProductDesc = findViewById(R.id.txtProductDesc);
+            btnAddCart = findViewById(R.id.btnAddCart);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(true);
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setCancelable(true);
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.show();
 
-        Intent intent = getIntent();
-        productId = intent.getIntExtra("productId", 0);
+            Intent intent = getIntent();
+            productId = intent.getIntExtra("productId", 0);
 
-        if (productId != 0){
-            String id = String.valueOf(productId);
-            Log.e(TAG, "Product Found: "+ productId );
-            getProductDetais(id);
-        }else {
-            Toast.makeText(this, "Product Not Found: "+ productId, Toast.LENGTH_SHORT).show();
-        }
+            if (productId != 0){
+                String id = String.valueOf(productId);
+                Log.e(TAG, "Product Found: "+ productId );
+                getProductDetais(id);
+            }else {
+                Toast.makeText(this, "Product Not Found: "+ productId, Toast.LENGTH_SHORT).show();
+            }
 
-        String mydata = AppPreference.getInstance(ProductDetailsActivity.this).getString("cartData");
+            String mydata = AppPreference.getInstance(ProductDetailsActivity.this).getString("cartData");
 
-        myCartData = new Gson().fromJson(mydata, new TypeToken<HashSet<Integer>>(){}.getType());
+            if(!mydata.equalsIgnoreCase("")){
+                myCartData = new Gson().fromJson(mydata, new TypeToken<HashSet<Integer>>(){}.getType());
+            }
 
-        if(myCartData.contains(productId)){
-            btnAddCart.setText("Cart Added");
+            if(myCartData != null && myCartData.contains(productId)){
+                btnAddCart.setText("GO TO CART");
+            }
+        }catch (Exception e){
+            Log.e(TAG, "onCreate: "+ e.getMessage() );
         }
     }
 
@@ -79,7 +86,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             Call<ProductDetailsModal> call = RetrofitClient.getInstance().getMyApi().getProductDetails(productId);
             call.enqueue(new Callback<ProductDetailsModal>() {
                 @Override
-                public void onResponse(Call<ProductDetailsModal> call, Response<ProductDetailsModal> response) {
+                public void onResponse(@NonNull Call<ProductDetailsModal> call, @NonNull Response<ProductDetailsModal> response) {
                     if(response.isSuccessful()){
                         try {
                             model = response.body();
@@ -118,12 +125,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(myCartData.contains(productId)){
-                    btnAddCart.setText("Cart Added");
-                    Toast.makeText(ProductDetailsActivity.this, "Product Already Added To Cart List", Toast.LENGTH_SHORT).show();
+                if(myCartData != null && myCartData.contains(productId)){
+                    btnAddCart.setText("GO TO CART");
+                    Intent intent = new Intent(ProductDetailsActivity.this, UserCartActivity.class);
+                    startActivity(intent);
+                    //Toast.makeText(ProductDetailsActivity.this, "Product Already Added To Cart List", Toast.LENGTH_SHORT).show();
                 }else {
                     myCartData.add(productId);
-                    btnAddCart.setText("Cart Added");
+                    btnAddCart.setText("GO TO CART");
                     String addedCart = new Gson().toJson(myCartData);
 
                     AppPreference.getInstance(ProductDetailsActivity.this).putString("cartData", addedCart);

@@ -9,14 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.fooddelivery.Adapter.CategoryAdapter;
@@ -31,14 +25,14 @@ import com.example.fooddelivery.modal.Product;
 import com.example.fooddelivery.modal.SliderImageModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
+import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        String name = AppPreference.getInstance(getApplicationContext()).getString("userName");
+        String userName = "Hii, "+ name;
+        binding.usertxt.setText(userName);
 
         /*addCart = new HashSet<>();
         addCart.add(2);
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "About Selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.logout:
-                        Toast.makeText(MainActivity.this, "Logout", Toast.LENGTH_SHORT).show();
+                        AppPreference.getInstance(getApplicationContext()).setBoolean("isLogin", false);
                         finish();
                         break;
                 }
@@ -143,24 +141,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getSliderImages() {
-        sliderImageModels = new ArrayList<>();
+        /*sliderImageModels = new ArrayList<>();
         sliderImageModels.add(new SliderImageModel("https://static.toiimg.com/photo/msid-96426364/96426364.jpg", "hiii siidhhesh"));
         //sliderImageModels.add(new SliderImageModel("https://www.shopickr.com/wp-content/uploads/2021/01/myntra-republic-day-sale-2021.png", "hiii Devendra"));
         //sliderImageModels.add(new SliderImageModel("https://www.jiomart.com/images/cms/aw_rbslider/slides/1655751757_Smart-casuals.jpg", "hiii Devendra"));
         sliderImageModels.add(new SliderImageModel("https://assets.indiadesire.com/images/myntra%20right%20to%20fashion%20sale%20jan%202023.jpg", "hiii Devendra"));
         sliderImageModels.add(new SliderImageModel("https://reviews.com.np/uploads/images/Article/Hyundai/18-10-20/NewFolder/TCL-new%3Dyear-offer-2078-body.jpeg", "hiii Kunal"));
 
-        SliderAdapter adapter = new SliderAdapter(this, sliderImageModels);
+        SliderAdapter adapter = new SliderAdapter(this, sliderImageModels);*/
 
-        binding.imageSlider.setSliderAdapter(adapter);
-
+        Picasso.get().load("https://assets.indiadesire.com/images/myntra%20right%20to%20fashion%20sale%20jan%202023.jpg")
+                .into(binding.imgDiv);
+        /*
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.SCALE_DOWN); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         binding.imageSlider.setIndicatorSelectedColor(Color.WHITE);
         binding.imageSlider.setIndicatorUnselectedColor(Color.GRAY);
         binding.imageSlider.setScrollTimeInSec(4); //set scroll delay in seconds :
-        binding.imageSlider.startAutoCycle();
+        binding.imageSlider.startAutoCycle();*/
     }
 
     public void getCategoryList(){
@@ -172,10 +171,10 @@ public class MainActivity extends AppCompatActivity {
         myCategoryList.add(new Category("electronics", R.drawable.electronics));
         myCategoryList.add(new Category("jewelery", R.drawable.jewelery));
         myCategoryList.add(new Category("men's clothing", R.drawable.men_clothes));
-        myCategoryList.add(new Category("women's clothing", R.drawable.woman_clothes));
-        myCategoryList.add(new Category("Grosarry", R.drawable.grossary));
+        myCategoryList.add(new Category("women's clothing", R.drawable.women_clothes));
+        myCategoryList.add(new Category("Grosarry", R.drawable.grosarry));
         myCategoryList.add(new Category("kids Clothing", R.drawable.kid_clothes));
-        myCategoryList.add(new Category("Demo", R.drawable.iphone));
+        myCategoryList.add(new Category("iPhone", R.drawable.iphone));
 
         categoryAdapter = new CategoryAdapter(getApplicationContext(),myCategoryList);
         binding.categoryList.setAdapter(categoryAdapter);

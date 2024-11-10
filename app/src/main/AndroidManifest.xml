@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDelivery">
-        <activity android:name=".Activity.LoginScreen"></activity>
+        <activity android:name=".Activity.LoginScreen" />
+        <activity android:name=".Activity.RegisterPage" />
         <activity
             android:name=".Activity.UserCartActivity"
             android:parentActivityName=".Activity.MainActivity" />

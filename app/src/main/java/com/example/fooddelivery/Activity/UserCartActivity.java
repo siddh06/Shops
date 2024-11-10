@@ -51,6 +51,7 @@ public class UserCartActivity extends AppCompatActivity {
 
         rvCartList = findViewById(R.id.cartRv);
         txtEmtyCart = findViewById(R.id.txtEmtyCart);
+        TextView proceedBtn = findViewById(R.id.proceedBtn);
 
         String myString = AppPreference.getInstance(this).getString("cartData");
         Log.e("Mycart", "Mycart mystring: "+ myString );
@@ -58,6 +59,13 @@ public class UserCartActivity extends AppCompatActivity {
         addCart = new Gson().fromJson(myString, new TypeToken<HashSet<Integer>>(){}.getType());
 
         getCartList();
+
+        proceedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void getCartList() {
